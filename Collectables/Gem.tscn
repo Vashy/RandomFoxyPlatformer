@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://hycgqrs3p1py"]
 
-[ext_resource type="Texture2D" uid="uid://bcp75rxq211ch" path="res://Sunny-land-files/Graphical Assets/spritesheets/gem.png" id="1_cm45l"]
+[ext_resource type="Texture2D" uid="uid://bcp75rxq211ch" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/spritesheets/gem.png" id="1_cm45l"]
 [ext_resource type="AudioStream" uid="uid://bdv13ofl0ji6j" path="res://Sounds/pickup-gem.wav" id="2_djxq1"]
 [ext_resource type="PackedScene" uid="uid://bhdqix4fq0jgj" path="res://Other/VanishingBehavior.tscn" id="3_frdy2"]
 

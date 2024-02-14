@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dukwts3h3wnrj"]
+[gd_scene load_steps=3 format=3 uid="uid://dukwts3h3wnrj"]
 
 [ext_resource type="AudioStream" uid="uid://cg56u4xjlq3f6" path="res://Music by Pascal Belisle/platformer_level03_loop.ogg" id="1_pi0p8"]
+[ext_resource type="Script" path="res://Global/background_music_player.gd" id="2_w0meg"]
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer"]
-process_mode = 4
+process_mode = 3
 stream = ExtResource("1_pi0p8")
 volume_db = -5.0
-autoplay = true
+script = ExtResource("2_w0meg")

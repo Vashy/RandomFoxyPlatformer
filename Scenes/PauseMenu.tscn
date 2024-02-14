@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbxjrjlvx8s5r"]
+
+[ext_resource type="Script" path="res://Scenes/PauseMenu.gd" id="1_iyv6p"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_iyv6p")
+
+[node name="PauseLabel" type="Label" parent="."]
+offset_left = 458.0
+offset_top = 96.0
+offset_right = 684.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 40
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="."]
+offset_left = 466.0
+offset_top = 203.0
+offset_right = 675.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="ToggleMusicButton" type="Button" parent="."]
+offset_left = 466.0
+offset_top = 333.0
+offset_right = 675.0
+offset_bottom = 419.0
+theme_override_font_sizes/font_size = 28
+text = "Toggle Music"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 466.0
+offset_top = 459.0
+offset_right = 675.0
+offset_bottom = 545.0
+theme_override_font_sizes/font_size = 28
+text = "Quit"
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ToggleMusicButton" to="." method="_on_toggle_music_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

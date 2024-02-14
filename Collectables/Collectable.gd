@@ -1,5 +1,4 @@
 extends Node2D
-
 class_name Collectable
 
 func gold_value():
@@ -7,6 +6,6 @@ func gold_value():
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		Game.gold += gold_value()
+		Game.add_gold(gold_value())
 		$PickUpSound.play()
 		$VanishingBehavior.vanish()

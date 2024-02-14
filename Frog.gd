@@ -47,7 +47,6 @@ func _on_death_body_entered(body):
 		body.enemy_defeated()
 		death()
 		Game.add_gold(gold_value)
-		Utils.saveGame()
 
 func _on_player_collision_body_entered(body):
 	if body.name == "Player":

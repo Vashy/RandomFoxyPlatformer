@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0hk7p1x76huj"]
 
-[ext_resource type="Texture2D" uid="uid://dyuyy2c048tqf" path="res://Sunny-land-files/Graphical Assets/environment/Props/bush.png" id="1_4jwt6"]
+[ext_resource type="Texture2D" uid="uid://dyuyy2c048tqf" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/environment/Props/bush.png" id="1_4jwt6"]
 [ext_resource type="Script" path="res://Traps/TrapBush.gd" id="2_wsmv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7m0w"]

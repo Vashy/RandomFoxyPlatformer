@@ -1,9 +1,9 @@
 [gd_scene load_steps=26 format=3 uid="uid://b3hyn7wsnq28u"]
 
 [ext_resource type="Script" path="res://Frog.gd" id="1_3hud5"]
-[ext_resource type="Texture2D" uid="uid://mtsq1n576sxu" path="res://Sunny-land-files/Graphical Assets/spritesheets/frog-idle.png" id="1_73var"]
-[ext_resource type="Texture2D" uid="uid://rctlnml0rait" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_y83b1"]
-[ext_resource type="Texture2D" uid="uid://cuvukx6ch5dw1" path="res://Sunny-land-files/Graphical Assets/spritesheets/frog-jump.png" id="2_6bqhk"]
+[ext_resource type="Texture2D" uid="uid://mtsq1n576sxu" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/spritesheets/frog-idle.png" id="1_73var"]
+[ext_resource type="Texture2D" uid="uid://rctlnml0rait" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_y83b1"]
+[ext_resource type="Texture2D" uid="uid://cuvukx6ch5dw1" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/spritesheets/frog-jump.png" id="2_6bqhk"]
 [ext_resource type="PackedScene" uid="uid://cehcu8w3a432b" path="res://Sounds/DeathSfx.tscn" id="5_484h3"]
 [ext_resource type="PackedScene" uid="uid://codv6up4cijac" path="res://Other/OnPlayerProximityEnablerBehavior.tscn" id="6_2x5t2"]
 

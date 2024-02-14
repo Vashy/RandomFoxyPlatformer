@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://drh230hhlni7i"]
+
+[ext_resource type="Script" path="res://Global/InputController.gd" id="1_w86l3"]
+
+[node name="InputController" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_w86l3")
