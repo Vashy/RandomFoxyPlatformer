@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhdqix4fq0jgj"]
+
+[ext_resource type="Script" path="res://Other/VanishingBehavior.gd" id="1_5ri08"]
+
+[node name="VanishingBehavior" type="Node2D"]
+script = ExtResource("1_5ri08")

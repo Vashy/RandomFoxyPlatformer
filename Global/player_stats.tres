@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://c2t7w7d1t3lhn"]
+
+[ext_resource type="Script" path="res://Global/PlayerStats.gd" id="1_c6aqd"]
+
+[resource]
+script = ExtResource("1_c6aqd")
+max_HP = 3
+current_HP = null

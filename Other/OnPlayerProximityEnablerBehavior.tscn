@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://codv6up4cijac"]
+
+[ext_resource type="Script" path="res://Enemies/OnPlayerProximityEnablerBehavior.gd" id="1_s0ht7"]
+
+[node name="OnPlayerProximityEnablerBehavior" type="Node2D" node_paths=PackedStringArray("disablable_node", "proximity_area")]
+script = ExtResource("1_s0ht7")
+disablable_node = NodePath("")
+proximity_area = NodePath("")

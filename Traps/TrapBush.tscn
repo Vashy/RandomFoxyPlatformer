@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0hk7p1x76huj"]
+
+[ext_resource type="Texture2D" uid="uid://dyuyy2c048tqf" path="res://Sunny-land-files/Graphical Assets/environment/Props/bush.png" id="1_4jwt6"]
+[ext_resource type="Script" path="res://Traps/TrapBush.gd" id="2_wsmv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7m0w"]
+size = Vector2(135, 53)
+
+[node name="TrapBush" type="Sprite2D"]
+texture = ExtResource("1_4jwt6")
+script = ExtResource("2_wsmv5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_k7m0w")
+
+[node name="RespawnReset" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="RespawnReset" to="." method="_on_respawn_reset_timeout"]

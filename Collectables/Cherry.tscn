@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://05aigcl8u52d"]
+
+[ext_resource type="Texture2D" uid="uid://bb8pk7ugdd0fe" path="res://Sunny-land-files/Graphical Assets/spritesheets/cherry.png" id="1_h5v3y"]
+[ext_resource type="AudioStream" uid="uid://c084r6egwgnpd" path="res://Sounds/pickup-cherry.wav" id="2_dqtdk"]
+[ext_resource type="PackedScene" uid="uid://bhdqix4fq0jgj" path="res://Other/VanishingBehavior.tscn" id="3_p3oap"]
+
+[sub_resource type="GDScript" id="GDScript_2a1dj"]
+script/source = "extends Collectable
+
+func gold_value():
+	return 2
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_futav"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7bpi"]
+atlas = ExtResource("1_h5v3y")
+region = Rect2(0, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oikoa"]
+atlas = ExtResource("1_h5v3y")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pf6o"]
+atlas = ExtResource("1_h5v3y")
+region = Rect2(42, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iid8w"]
+atlas = ExtResource("1_h5v3y")
+region = Rect2(63, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onyyp"]
+atlas = ExtResource("1_h5v3y")
+region = Rect2(84, 0, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kswr1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7bpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oikoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pf6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iid8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onyyp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cherry" type="Area2D"]
+script = SubResource("GDScript_2a1dj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("CircleShape2D_futav")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kswr1")
+autoplay = "default"
+metadata/_edit_lock_ = true
+
+[node name="PickUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dqtdk")
+volume_db = -5.0
+
+[node name="VanishingBehavior" parent="." node_paths=PackedStringArray("vanishing_node") instance=ExtResource("3_p3oap")]
+vanishing_node = NodePath("..")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cehcu8w3a432b"]
+
+[ext_resource type="AudioStream" uid="uid://dotiig78b7q4q" path="res://Sounds/enemy-death.wav" id="1_45q6d"]
+
+[node name="DeathSfx" type="AudioStreamPlayer"]
+stream = ExtResource("1_45q6d")
+volume_db = -10.0

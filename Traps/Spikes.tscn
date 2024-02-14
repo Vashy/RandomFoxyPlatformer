@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd5aiisagdjju"]
+
+[ext_resource type="Script" path="res://Traps/Spikes.gd" id="1_voxd3"]
+[ext_resource type="Texture2D" uid="uid://diurxillecapg" path="res://spikes.png" id="2_jfhfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sk03j"]
+size = Vector2(34, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m13c8"]
+size = Vector2(112.5, 43.75)
+
+[node name="Spikes" type="Node2D"]
+script = ExtResource("1_voxd3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_jfhfr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_sk03j")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+scale = Vector2(0.32, 0.32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(1.49012e-06, 0)
+shape = SubResource("RectangleShape2D_m13c8")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_area_2d_body_entered"]

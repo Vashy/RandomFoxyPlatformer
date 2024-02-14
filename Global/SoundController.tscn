@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf3glax2waxo1"]
+
+[ext_resource type="Script" path="res://Global/SoundController.gd" id="1_bg3dl"]
+[ext_resource type="AudioStream" uid="uid://b1xrfyim822nr" path="res://Sounds/player-death.mp3" id="2_iuiri"]
+
+[node name="SoundController" type="Node2D"]
+script = ExtResource("1_bg3dl")
+
+[node name="PlayerDeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_iuiri")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm5m7a08hs0b5"]
+
+[ext_resource type="PackedScene" uid="uid://bb6rh3pau06y6" path="res://BG.tscn" id="1_hmfm5"]
+[ext_resource type="PackedScene" uid="uid://bol6pc2taxljy" path="res://Scenes/GameOverScreen.tscn" id="13_udprg"]
+
+[node name="GameOverScene" type="Node2D"]
+
+[node name="BG" parent="." instance=ExtResource("1_hmfm5")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("13_udprg")]
