@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
-@export var gold_value = 2
+@export var difficulty := 2
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var SPEED = 50
 var chase = false
@@ -42,14 +42,14 @@ func _on_player_detection_body_exited(body):
 	if body.name == "Player":
 		chase = false
 
-func _on_death_body_entered(body):
-	if body.name == "Player":
+func _on_death_body_entered(body: Node2D):
+	if body.name == "Player" and not body.invincibility_frame:
 		body.enemy_defeated()
 		death()
-		Game.add_gold(gold_value)
+		Game.notify_enemy_defeated(difficulty)
 
 func _on_player_collision_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and not body.invincibility_frame:
 		if not is_dead:
 			body.hit()
 		death()

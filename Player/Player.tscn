@@ -266,7 +266,7 @@ shape = SubResource("CapsuleShape2D_blgtl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_poi26")
-animation = &"Jump"
+animation = &"Idle"
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -282,3 +282,8 @@ stream = ExtResource("16_pxu0r")
 
 [node name="HitSfx" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("16_7nej6")
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

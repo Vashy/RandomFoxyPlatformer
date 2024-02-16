@@ -101,8 +101,8 @@ radius = 379.047
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppy1q"]
 size = Vector2(14, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v422"]
-size = Vector2(14, 11)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujam8"]
+radius = 8.0
 
 [sub_resource type="Animation" id="Animation_m8l8r"]
 resource_name = "Chase"
@@ -224,7 +224,7 @@ autoplay = "Idle"
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 5)
+position = Vector2(-4, 5)
 shape = SubResource("CapsuleShape2D_t65va")
 
 [node name="EnableDetection" type="Area2D" parent="."]
@@ -237,14 +237,15 @@ shape = SubResource("CircleShape2D_08p0f")
 [node name="DamageCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageCollision"]
-position = Vector2(-3, -1)
+position = Vector2(-4, -1)
 shape = SubResource("RectangleShape2D_ppy1q")
 
 [node name="PlayerCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision"]
-position = Vector2(-3, 6.5)
-shape = SubResource("RectangleShape2D_2v422")
+position = Vector2(-4, 6)
+shape = SubResource("CircleShape2D_ujam8")
+metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("12_b5wip")

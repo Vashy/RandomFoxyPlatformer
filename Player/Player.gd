@@ -5,16 +5,18 @@ const JUMP_VELOCITY = -400.0
 
 @export var player_stats: PlayerStats
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-@onready var animation = get_node("AnimationPlayer")
+var dead := false
+var invincibility_frame := false
+const HURT_COLOR_MODULATION = Color("#9a0025")
 
 func _ready():
 	player_stats.on_player_death.connect(die)
-	printt("player_stats.current_HP", player_stats.current_HP)
 
 func _physics_process(delta):
+	if dead:
+		return
+
 	if Input.is_key_pressed(KEY_R): # Debug mode
 		get_tree().reload_current_scene()
 
@@ -35,24 +37,27 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = false
 	if direction:
 		velocity.x = direction * SPEED
-		if velocity.y == 0:
-			if animation.current_animation != "Hurt":
-				animation.play("Run")
+		if velocity.y == 0 and $AnimationPlayer.current_animation != "Hurt":
+			$AnimationPlayer.play("Run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if velocity.y == 0:
-			if animation.current_animation != "Hurt":
-				animation.play("Idle")
-	if velocity.y > 0:
-		if animation.current_animation != "Hurt":
-			animation.play("Fall")
+		if velocity.y == 0 and $AnimationPlayer.current_animation != "Hurt":
+			$AnimationPlayer.play("Idle")
+	if velocity.y > 0 and $AnimationPlayer.current_animation != "Hurt":
+		$AnimationPlayer.play("Fall")
 
 	move_and_slide()
 
 func hit():
+	if invincibility_frame:
+		return
+	modulate = HURT_COLOR_MODULATION
+	_blink()
+	invincibility_frame = true
 	Game.player_hit()
+	$AnimationPlayer.play("Hurt")
 	$Sounds/HitSfx.play()
-	animation.play("Hurt")
+	$InvincibilityTimer.start()
 
 func enemy_defeated():
 	jump()
@@ -60,19 +65,42 @@ func enemy_defeated():
 func jump():
 	velocity.y = JUMP_VELOCITY
 	$Sounds/JumpSfx.play()
-	animation.play("Jump")
+	if not dead:
+		$AnimationPlayer.play("Jump")
 
 func heal():
 	player_stats.heal()
 
 func die():
+	if dead:
+		return
+	dead = true
 	print("player dead!")
-	queue_free()
+	$AnimationPlayer.play("Hurt")
+	SoundController.play(SoundController.SoundType.PlayerDeath)
+	_apply_death_effect()
 
 func calculate_direction_from_input():
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if Input.is_key_pressed(KEY_A):
-		return -1
-	if Input.is_key_pressed(KEY_D):
-		return 1
-	return direction
+	return Input.get_axis("ui_left", "ui_right")
+
+func _apply_death_effect():
+	var position_tween = create_tween()
+	var rotate_tween = create_tween()
+	if Input.is_action_pressed("ui_right"):
+		position_tween.tween_property(self, "global_position", global_position + Vector2(30, -30), 0.1)
+		position_tween.tween_property(self, "global_position", global_position + Vector2(30, 15), 0.1)
+		rotate_tween.tween_property(self, "rotation", 0.5, 0.2)
+	else:
+		position_tween.tween_property(self, "global_position", global_position + Vector2(-30, -30), 0.1)
+		position_tween.tween_property(self, "global_position", global_position + Vector2(-30, 15), 0.1)
+		rotate_tween.tween_property(self, "rotation", -0.5, 0.2)
+
+func _on_invincibility_timer_timeout():
+	invincibility_frame = false
+	modulate = Color.WHITE
+
+func _blink():
+	var tween = create_tween()
+	for _i in range(3):
+		tween.tween_property(self, "modulate:a", 0, 0.1)
+		tween.tween_property(self, "modulate:a", 1, 0.1)

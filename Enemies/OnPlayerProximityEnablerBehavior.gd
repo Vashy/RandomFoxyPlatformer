@@ -12,7 +12,6 @@ func _ready():
 
 func enable_node_on_player(body: Node2D):
 	if disablable_node and body.name == "Player":
-		print("enabling node " + disablable_node.name)
 		disablable_node.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func disable_node_on_player(body: Node2D):
@@ -20,6 +19,5 @@ func disable_node_on_player(body: Node2D):
 		call_deferred("disable")
 
 func disable():
-	print("disabling node " + disablable_node.name)
 	disablable_node.process_mode = Node.PROCESS_MODE_DISABLED
 	proximity_area.process_mode = Node.PROCESS_MODE_PAUSABLE
