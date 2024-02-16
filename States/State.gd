@@ -2,7 +2,7 @@ extends Node
 
 class_name State
 
-signal transitioned
+signal transitioned(State, String)
 
 func enter():
 	pass
