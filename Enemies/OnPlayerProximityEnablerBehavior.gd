@@ -11,11 +11,11 @@ func _ready():
 		call_deferred("disable")
 
 func enable_node_on_player(body: Node2D):
-	if disablable_node and body.name == "Player":
+	if disablable_node and body is Player:
 		disablable_node.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func disable_node_on_player(body: Node2D):
-	if disablable_node and body.name == "Player":
+	if disablable_node and body is Player:
 		call_deferred("disable")
 
 func disable():

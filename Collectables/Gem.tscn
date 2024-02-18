@@ -9,6 +9,9 @@ script/source = "extends Collectable
 
 func gold_value():
 	return 5
+
+func _on_body_entered(body):
+	super.on_body_entered(body, $CollisionShape2D)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_futav"]

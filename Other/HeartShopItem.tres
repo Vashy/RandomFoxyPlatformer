@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=4 format=3 uid="uid://bh2lefpoeh28c"]
+
+[ext_resource type="Script" path="res://Other/ShopItem.gd" id="1_g17pd"]
+[ext_resource type="Texture2D" uid="uid://buwgpoous5taq" path="res://heart.png" id="1_hmvdi"]
+[ext_resource type="Resource" uid="uid://bsi8somial1o" path="res://Other/HealResourceAction.tres" id="1_ljel4"]
+
+[resource]
+script = ExtResource("1_g17pd")
+item_name = "Heart"
+description = "Heal yourself"
+cost = 30
+image_src = ExtResource("1_hmvdi")
+action = ExtResource("1_ljel4")

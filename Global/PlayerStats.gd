@@ -20,12 +20,16 @@ func damage(value: int = 1) -> int:
 func heal(value: int = 1) -> int:
 	if current_HP == max_HP:
 		return current_HP
-	if current_HP + value < max_HP:
+	if current_HP + value <= max_HP:
 		current_HP += value
 		on_player_healed.emit()
 	else:
 		current_HP = max_HP
+	print("player healed")
 	return current_HP
+
+func is_full_health():
+	return current_HP == max_HP
 
 func die_now():
 	if on_player_death:

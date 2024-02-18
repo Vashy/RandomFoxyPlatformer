@@ -1,0 +1,190 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyc004700s8q8"]
+
+[ext_resource type="Script" path="res://Other/Shop.gd" id="1_1n8xo"]
+[ext_resource type="Texture2D" uid="uid://0iowd01sqvhc" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/environment/Props/straw-house.png" id="1_jsy54"]
+[ext_resource type="Resource" uid="uid://bh2lefpoeh28c" path="res://Other/HeartShopItem.tres" id="2_o3t8b"]
+[ext_resource type="Resource" uid="uid://cspfs8prn264q" path="res://Global/GameState.tres" id="3_0rgk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8wjd"]
+size = Vector2(70, 52.5)
+
+[sub_resource type="Animation" id="Animation_begyn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nfv4h"]
+resource_name = "TransIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 500)]
+}
+
+[sub_resource type="Animation" id="Animation_4vnxd"]
+resource_name = "TransOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 500), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rte1v"]
+_data = {
+"RESET": SubResource("Animation_begyn"),
+"TransIn": SubResource("Animation_nfv4h"),
+"TransOut": SubResource("Animation_4vnxd")
+}
+
+[node name="Shop" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_1n8xo")
+item_set = Array[Resource("res://Other/ShopItem.gd")]([ExtResource("2_o3t8b")])
+game_state = ExtResource("3_0rgk6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jsy54")
+
+[node name="PromptTip" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = -72.0
+offset_top = -57.0
+offset_right = -32.0
+offset_bottom = -17.0
+color = Color(0.913725, 0.670588, 0.0941176, 1)
+
+[node name="Label" type="Label" parent="PromptTip"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-17, 21)
+shape = SubResource("RectangleShape2D_u8wjd")
+
+[node name="ShopMenu" type="CanvasLayer" parent="."]
+
+[node name="Anim" type="AnimationPlayer" parent="ShopMenu"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_rte1v")
+}
+
+[node name="Panel" type="Panel" parent="ShopMenu"]
+offset_left = 320.0
+offset_top = -308.0
+offset_right = 832.0
+offset_bottom = -52.0
+
+[node name="ShopControl" type="Control" parent="ShopMenu/Panel"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 256.0
+
+[node name="Name" type="Label" parent="ShopMenu/Panel/ShopControl"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 448.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 25
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="ShopMenu/Panel/ShopControl"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 148.0
+offset_right = 448.0
+offset_bottom = 204.0
+theme_override_font_sizes/font_size = 10
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ShopMenu/Panel/ShopControl"]
+position = Vector2(256, 96)
+scale = Vector2(0.202, 0.202)
+
+[node name="BuyButton" type="Button" parent="ShopMenu/Panel/ShopControl"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 212.0
+offset_right = 296.0
+offset_bottom = 243.0
+focus_mode = 0
+text = "Buy: ?"
+
+[node name="PreviousButton" type="Button" parent="ShopMenu/Panel/ShopControl"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 92.0
+offset_right = 168.0
+offset_bottom = 140.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+disabled = true
+text = "<"
+
+[node name="NextButton" type="Button" parent="ShopMenu/Panel/ShopControl"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 92.0
+offset_right = 384.0
+offset_bottom = 140.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+disabled = true
+text = ">"
+
+[node name="ExitButton" type="Button" parent="ShopMenu/Panel"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 8.0
+offset_right = 504.0
+offset_bottom = 56.0
+focus_mode = 0
+text = "X"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="ShopMenu/Panel/ShopControl/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="ShopMenu/Panel/ExitButton" to="." method="_on_exit_button_pressed"]

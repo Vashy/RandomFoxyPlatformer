@@ -4,16 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://diurxillecapg" path="res://spikes.png" id="2_jfhfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sk03j"]
-size = Vector2(34, 13)
+size = Vector2(30, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m13c8"]
-size = Vector2(112.5, 43.75)
+size = Vector2(100, 50)
 
 [node name="Spikes" type="Node2D"]
 script = ExtResource("1_voxd3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+position = Vector2(-7.15256e-07, 1.63913e-07)
+scale = Vector2(0.246154, 0.32)
 texture = ExtResource("2_jfhfr")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -26,7 +27,6 @@ shape = SubResource("RectangleShape2D_sk03j")
 scale = Vector2(0.32, 0.32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
-position = Vector2(1.49012e-06, 0)
 shape = SubResource("RectangleShape2D_m13c8")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_area_2d_body_entered"]

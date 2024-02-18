@@ -125,8 +125,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vya7l"]
-radius = 245.131
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eojxa"]
+size = Vector2(486, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uted8"]
 size = Vector2(15, 17)
@@ -151,11 +151,10 @@ animation = &"Idle"
 metadata/_edit_lock_ = true
 
 [node name="Player Detection" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Detection"]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_vya7l")
+position = Vector2(1, -11)
+shape = SubResource("RectangleShape2D_eojxa")
 
 [node name="DamageCollision" type="Area2D" parent="."]
 

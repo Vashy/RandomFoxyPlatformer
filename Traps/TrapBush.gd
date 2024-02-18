@@ -7,7 +7,7 @@ class_name TrapBush
 var spawned := false
 
 func _on_area_2d_body_entered(body):
-	if body.name == "Player" and not spawned:
+	if body is Player and not spawned:
 		call_deferred("spawn_frog")
 
 func spawn_frog():

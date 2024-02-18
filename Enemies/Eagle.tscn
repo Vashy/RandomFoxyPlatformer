@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://wgpxapyt8ccl"]
+[gd_scene load_steps=34 format=3 uid="uid://wgpxapyt8ccl"]
 
 [ext_resource type="Texture2D" uid="uid://b7wbi24lvnhg0" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/sprites/eagle/eagle-attack-1.png" id="1_gaa5w"]
 [ext_resource type="Script" path="res://Enemies/Eagle.gd" id="1_xtdfp"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://codv6up4cijac" path="res://Other/OnPlayerProximityEnablerBehavior.tscn" id="12_olq4t"]
 [ext_resource type="PackedScene" uid="uid://cehcu8w3a432b" path="res://Sounds/DeathSfx.tscn" id="12_u5wpp"]
 [ext_resource type="Script" path="res://Enemies/EagleIdleState.gd" id="13_eak62"]
+[ext_resource type="Script" path="res://Enemies/Danger.gd" id="14_62ccr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fulet"]
 atlas = ExtResource("6_e65pt")
@@ -100,10 +101,10 @@ height = 14.0
 radius = 379.047
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppy1q"]
-size = Vector2(14, 4)
+size = Vector2(16, 4)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ujam8"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo5mr"]
+size = Vector2(14, 11)
 
 [sub_resource type="Animation" id="Animation_m8l8r"]
 resource_name = "Chase"
@@ -214,19 +215,72 @@ _data = {
 "RESET": SubResource("Animation_lcb48")
 }
 
+[sub_resource type="Animation" id="Animation_4hmia"]
+resource_name = "PopOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExclamationMark:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExclamationMark:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.352941), Color(1, 1, 1, 1), Color(1, 1, 1, 0.352941), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_savq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExclamationMark:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.352941)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhyt0"]
+_data = {
+"PopOut": SubResource("Animation_4hmia"),
+"RESET": SubResource("Animation_savq2")
+}
+
 [node name="Eagle" type="CharacterBody2D"]
+position = Vector2(4, -5)
 motion_mode = 1
 script = ExtResource("1_xtdfp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, 5)
+scale = Vector2(1, 1.0059)
 sprite_frames = SubResource("SpriteFrames_w0ks7")
 animation = &"Chase"
 autoplay = "Idle"
 frame = 1
+offset = Vector2(4, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 5)
 shape = SubResource("CapsuleShape2D_t65va")
+metadata/_edit_lock_ = true
 
 [node name="EnableDetection" type="Area2D" parent="."]
 process_mode = 3
@@ -236,19 +290,21 @@ visible = false
 shape = SubResource("CircleShape2D_08p0f")
 
 [node name="DamageCollision" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageCollision"]
 position = Vector2(-4, -1)
 shape = SubResource("RectangleShape2D_ppy1q")
 
 [node name="PlayerCollision" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision"]
-position = Vector2(-4, 6)
-shape = SubResource("CircleShape2D_ujam8")
 metadata/_edit_lock_ = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision"]
+position = Vector2(-4, 6.5)
+shape = SubResource("RectangleShape2D_vo5mr")
+
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+position = Vector2(-4, 5)
 script = ExtResource("7_6do00")
 initial_state = NodePath("Idle")
 
@@ -279,12 +335,45 @@ autoplay = "Idle"
 [node name="DeathSfx" parent="." instance=ExtResource("12_u5wpp")]
 
 [node name="PlayerDetector" type="Node2D" parent="." node_paths=PackedStringArray("body")]
+position = Vector2(-4, 5)
 script = ExtResource("11_kfpuo")
 body = NodePath("..")
 
 [node name="OnPlayerProximityEnablerBehavior" parent="." node_paths=PackedStringArray("disablable_node", "proximity_area") instance=ExtResource("12_olq4t")]
+position = Vector2(-4, 5)
 disablable_node = NodePath("..")
 proximity_area = NodePath("../EnableDetection")
+
+[node name="Danger" type="Node2D" parent="."]
+position = Vector2(-4, -18)
+script = ExtResource("14_62ccr")
+
+[node name="ExclamationMark" type="Label" parent="Danger"]
+modulate = Color(1, 1, 1, 0.352941)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -33.0
+offset_right = 19.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.980392, 0, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Danger"]
+libraries = {
+"": SubResource("AnimationLibrary_lhyt0")
+}
 
 [connection signal="body_entered" from="DamageCollision" to="." method="_on_damage_collision_body_entered"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]

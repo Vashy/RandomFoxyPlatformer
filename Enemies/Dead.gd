@@ -5,10 +5,10 @@ extends State
 func enter():
 	enemy.velocity = Vector2.ZERO
 	_free_collisions()
+	Game.notify_enemy_defeated(enemy.name, enemy.difficulty)
 	$"../../DeathSfx".play()
 	$"../../AnimationPlayer".play("Death")
 	await $"../../AnimationPlayer".animation_finished
-	Game.notify_enemy_defeated(enemy.difficulty)
 	enemy.queue_free()
 
 func update(_delta: float):

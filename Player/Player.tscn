@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://duff3x7078xbk"]
+[gd_scene load_steps=35 format=3 uid="uid://duff3x7078xbk"]
 
 [ext_resource type="Texture2D" uid="uid://b3o8if3cdjvwm" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/sprites/player/hurt/player-hurt-1.png" id="1_jh2r1"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_l624v"]
@@ -18,6 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://bh38wo0puw4jk" path="res://ExternalAssets/Sunny-land-files/Graphical Assets/sprites/player/run/player-run-6.png" id="14_7shr5"]
 [ext_resource type="AudioStream" uid="uid://bun28buyf07js" path="res://Sounds/player-hit.wav" id="16_7nej6"]
 [ext_resource type="AudioStream" uid="uid://csntjoscnd33c" path="res://Sounds/jump-sound.mp3" id="16_pxu0r"]
+[ext_resource type="Script" path="res://States/StateMachine.gd" id="19_yqmc6"]
+[ext_resource type="Script" path="res://Player/PlayerIdleState.gd" id="20_8ab8c"]
+[ext_resource type="Script" path="res://Player/PlayerJumpState.gd" id="21_3b4i0"]
+[ext_resource type="Script" path="res://Player/PlayerFallState.gd" id="22_g28ah"]
+[ext_resource type="Script" path="res://Player/PlayerRunState.gd" id="22_q4nyf"]
+[ext_resource type="Script" path="res://Player/PlayerHurtState.gd" id="23_1eqbp"]
+[ext_resource type="Script" path="res://Player/PlayerDeadState.gd" id="24_cbvym"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blgtl"]
 radius = 8.29016
@@ -254,28 +261,31 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(-1, 10)
+position = Vector2(0, -6)
 script = ExtResource("1_l624v")
 player_stats = ExtResource("2_4a7bu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.19209e-07, -10)
+position = Vector2(-1.78814e-07, -4)
 scale = Vector2(0.965, 0.965)
 shape = SubResource("CapsuleShape2D_blgtl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -16)
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_poi26")
 animation = &"Idle"
 frame = 1
+offset = Vector2(0, -7)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_m3s3l")
 }
 autoplay = "Idle"
 
 [node name="Sounds" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="JumpSfx" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("16_pxu0r")
@@ -284,6 +294,39 @@ stream = ExtResource("16_pxu0r")
 stream = ExtResource("16_7nej6")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.6
+one_shot = true
 
-[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("19_yqmc6")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("20_8ab8c")
+player = NodePath("../..")
+
+[node name="Jump" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("21_3b4i0")
+player = NodePath("../..")
+
+[node name="Fall" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("22_g28ah")
+player = NodePath("../..")
+
+[node name="Run" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("22_q4nyf")
+player = NodePath("../..")
+
+[node name="Hurt" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("23_1eqbp")
+player = NodePath("../..")
+player_stats = ExtResource("2_4a7bu")
+
+[node name="Dead" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("24_cbvym")
+player_stats = ExtResource("2_4a7bu")
+player = NodePath("../..")
+
+[connection signal="timeout" from="InvincibilityTimer" to="StateMachine/Hurt" method="_on_invincibility_timer_timeout"]

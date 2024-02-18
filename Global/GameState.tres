@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="GameState" load_steps=2 format=3 uid="uid://o86torjgds62"]
+[gd_resource type="Resource" script_class="GameState" load_steps=4 format=3 uid="uid://cspfs8prn264q"]
 
 [ext_resource type="Script" path="res://Global/GameState.gd" id="1_jm2yj"]
+[ext_resource type="Resource" uid="uid://c2t7w7d1t3lhn" path="res://Global/player_stats.tres" id="2_r2w01"]
+[ext_resource type="Resource" uid="uid://bud1cpeotkxsg" path="res://Global/PlayerPrefs.tres" id="2_sbkp4"]
 
 [resource]
 script = ExtResource("1_jm2yj")
+player_prefs = ExtResource("2_sbkp4")
+player_stats = ExtResource("2_r2w01")

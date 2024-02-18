@@ -35,24 +35,23 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_player_detection_body_entered(body):
-	if body.name == "Player":
+	if body is Player:
 		chase = true
 
 func _on_player_detection_body_exited(body):
-	if body.name == "Player":
+	if body is Player:
 		chase = false
 
 func _on_death_body_entered(body: Node2D):
-	if body.name == "Player" and not body.invincibility_frame:
+	if body is Player and not body.is_invincible():
 		body.enemy_defeated()
 		death()
-		Game.notify_enemy_defeated(difficulty)
+		Game.notify_enemy_defeated(name, difficulty)
 
 func _on_player_collision_body_entered(body):
-	if body.name == "Player" and not body.invincibility_frame:
+	if body is Player and not body.is_invincible():
 		if not is_dead:
 			body.hit()
-		death()
 
 func death():
 	velocity.x = 0

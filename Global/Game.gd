@@ -3,7 +3,7 @@ extends Node
 var player_stats: PlayerStats = preload("res://Global/player_stats.tres")
 var game_state: GameState = preload("res://Global/GameState.tres")
 
-signal enemy_defeated(int)
+signal enemy_defeated(String, int)
 
 func _ready():
 	player_stats.on_player_death.connect(_trigger_player_death)
@@ -13,10 +13,8 @@ func reset():
 	player_stats.reset()
 	game_state.reset()
 
-func player_hit():
-	player_stats.damage()
-
 func _trigger_player_death():
+	#game_state.level_state.last_level_reached = load("res://Scenes/%s.tscn" % [get_tree().current_scene.name])
 	await get_tree().create_timer(1.0).timeout
 	reset()
 	call_deferred("load_game_over_scene")
@@ -24,7 +22,8 @@ func _trigger_player_death():
 func add_gold(amount: int) -> int:
 	return game_state.add_gold(amount)
 
-func notify_enemy_defeated(difficulty: int):
+func notify_enemy_defeated(enemy_name: String, difficulty: int):
+	print("enemy defeated: " + enemy_name)
 	enemy_defeated.emit(difficulty)
 
 func load_game_over_scene():

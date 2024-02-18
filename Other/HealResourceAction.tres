@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HealResourceAction" load_steps=3 format=3 uid="uid://bsi8somial1o"]
+
+[ext_resource type="Script" path="res://Other/HealResourceAction.gd" id="1_4bphs"]
+[ext_resource type="Resource" uid="uid://c2t7w7d1t3lhn" path="res://Global/player_stats.tres" id="1_716ig"]
+
+[resource]
+script = ExtResource("1_4bphs")
+player_stats = ExtResource("1_716ig")
