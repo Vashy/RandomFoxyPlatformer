@@ -3,7 +3,7 @@ class_name EagleChaseState
 
 @export var enemy: CharacterBody2D
 @export var player_detector: PlayerDetector
-@export var move_speed := 100.0
+@export var move_speed := 190.0
 
 func enter():
 	$"../../AnimationPlayer".play("Chase")

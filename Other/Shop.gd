@@ -1,5 +1,8 @@
 extends Node2D
 
+# It would be bugged otherwised (starting at 0)
+const CANVAS_OFFSET = -1000
+
 @export var item_set: Array[ShopItem]
 @export var game_state: GameState
 var current_shop_item: ShopItem
@@ -7,6 +10,7 @@ var is_open := false
 var is_player_in_range := false
 
 func _ready():
+	$ShopMenu.offset.y = CANVAS_OFFSET
 	%PromptTip.visible = false
 	current_shop_item = item_set[0]
 	game_state.on_gold_changed.connect(_on_gold_changed)
@@ -57,12 +61,12 @@ func _on_gold_changed(_new_gold: int):
 
 func _toggle_buy_button_based_on_state():
 	if current_shop_item.cost > game_state.gold || not current_shop_item.action.is_action_enabled():
-		%ShopControl/BuyButton.disabled = true
+		%BuyButton.disabled = true
 	else:
-		%ShopControl/BuyButton.disabled = false
+		%BuyButton.disabled = false
 
 func _set_active_shop_item(shop_item: ShopItem):
-	%ShopControl/Name.text = shop_item.item_name
-	%ShopControl/Description.text = shop_item.description
-	%ShopControl/BuyButton.text = "Buy: %d" % [shop_item.cost]
-	%ShopControl/Sprite2D.texture = shop_item.image_src
+	%ItemName.text = shop_item.item_name
+	%ItemDescription.text = shop_item.description
+	%BuyButton.text = "Buy: %d" % [shop_item.cost]
+	%Texture.texture = shop_item.image_src

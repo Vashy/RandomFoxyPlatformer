@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="PlayerPrefs" load_steps=2 format=3 uid="uid://bud1cpeotkxsg"]
-
-[ext_resource type="Script" path="res://Global/PlayerPrefs.gd" id="1_c6ww5"]
-
-[resource]
-script = ExtResource("1_c6ww5")
-music_enabled = false

@@ -1,8 +1,6 @@
 extends Resource
 class_name GameState
 
-@export var player_prefs: PlayerPrefs
-#@export var level_state: LevelState
 @export var player_stats: PlayerStats
 
 signal on_gold_changed(int)

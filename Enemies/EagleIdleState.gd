@@ -3,7 +3,7 @@ class_name EagleIdleState
 
 @export var enemy: CharacterBody2D
 @export var player_detector: PlayerDetector
-@export var wander_speed := 50.0
+@export var wander_speed := 75.0
 
 enum IdleStatus { Standing, Wandering }
 

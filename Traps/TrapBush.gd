@@ -11,9 +11,13 @@ func _on_area_2d_body_entered(body):
 		call_deferred("spawn_frog")
 
 func spawn_frog():
-	add_child(spawn_object.instantiate())
-	spawned = true
-	timer.start()
+	if spawn_object:
+		var spawned_object = spawn_object.instantiate()
+		spawned_object.global_position = global_position
+		add_sibling(spawned_object)
+		spawned = true
+		print("spawned")
+		timer.start()
 
 func _on_respawn_reset_timeout():
 	spawned = false

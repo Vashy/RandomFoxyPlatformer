@@ -5,39 +5,55 @@
 [node name="PauseMenu" type="CanvasLayer"]
 script = ExtResource("1_iyv6p")
 
-[node name="PauseLabel" type="Label" parent="."]
-offset_left = 458.0
-offset_top = 96.0
-offset_right = 684.0
-offset_bottom = 151.0
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.5
+offset_top = -239.0
+offset_right = 215.5
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PauseLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Pause"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="."]
-offset_left = 466.0
-offset_top = 203.0
-offset_right = 675.0
-offset_bottom = 289.0
-theme_override_font_sizes/font_size = 40
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
 text = "Resume"
 
-[node name="ToggleMusicButton" type="Button" parent="."]
-offset_left = 466.0
-offset_top = 333.0
-offset_right = 675.0
-offset_bottom = 419.0
-theme_override_font_sizes/font_size = 28
+[node name="ToggleMusicButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
 text = "Toggle Music"
 
-[node name="QuitButton" type="Button" parent="."]
-offset_left = 466.0
-offset_top = 459.0
-offset_right = 675.0
-offset_bottom = 545.0
-theme_override_font_sizes/font_size = 28
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
-[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="ToggleMusicButton" to="." method="_on_toggle_music_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ToggleMusicButton" to="." method="_on_toggle_music_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

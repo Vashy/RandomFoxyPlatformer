@@ -1,6 +1,7 @@
-extends Node2D
+extends HBoxContainer
 
 @export var player_stats: PlayerStats
+var heart_texture: Texture2D = preload("res://heart.png")
 
 func _ready():
 	player_stats.on_player_hit.connect(on_player_health_changed)
@@ -11,19 +12,18 @@ func _ready():
 func on_player_health_changed():
 	var children = get_children()
 	var first = true
-	for child in children:
+	for heart_slot in children:
 		if first:
 			first = false
 			continue
-		child.queue_free()
+		heart_slot.texture = null
 	generate_hearts()
 
 func generate_hearts():
 	for i in range(1, player_stats.current_HP):
-		var heart_node = $"Health Icon".duplicate()
-		heart_node.position += Vector2(40 * i, 0)
-		$"Health Icon".add_sibling(heart_node)
+		var heart_slot = get_node("HeartSlot%s" % [i]) as TextureRect
+		heart_slot.texture = heart_texture
 
 func clear_hearts():
-	for node in get_children():
-		node.queue_free()
+	for heart_slot in get_children():
+		heart_slot.texture = null

@@ -10,4 +10,5 @@ func _on_body_entered(body):
 		call_deferred("load_next_level")
 
 func load_next_level():
+	Game.level_reached(2)
 	get_tree().change_scene_to_packed(new_level_scene)

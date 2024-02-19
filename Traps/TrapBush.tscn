@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Traps/TrapBush.gd" id="2_wsmv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7m0w"]
-size = Vector2(135, 53)
+size = Vector2(47.634, 53)
 
 [node name="TrapBush" type="Sprite2D"]
 position = Vector2(0, -13)
