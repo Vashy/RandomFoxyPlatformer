@@ -135,7 +135,7 @@ size = Vector2(15, 17)
 size = Vector2(18, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_513se"]
-radius = 488.037
+radius = 554.044
 
 [node name="Frog" type="CharacterBody2D"]
 script = ExtResource("1_3hud5")

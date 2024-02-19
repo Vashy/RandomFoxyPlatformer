@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_c6ww5")
-music_enabled = true
+music_enabled = false

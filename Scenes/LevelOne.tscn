@@ -578,10 +578,10 @@ layer_0/tile_data = PackedInt32Array(655360, 65536, 3, 720896, 65536, 3, 786432,
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("14_3dqwr")]
-position = Vector2(4360, 122)
+position = Vector2(554, 289)
 
 [node name="Camera2D" type="Camera2D" parent="Player/Player"]
-zoom = Vector2(2.185, 2.185)
+zoom = Vector2(2.695, 2.695)
 limit_left = 0
 limit_top = 0
 limit_right = 5295
@@ -639,10 +639,10 @@ position = Vector2(2751, 46)
 position = Vector2(3385, 46)
 
 [node name="Eagle4" parent="Mobs" instance=ExtResource("11_wc0t2")]
-position = Vector2(4120, 45)
+position = Vector2(4129, 6)
 
 [node name="Eagle5" parent="Mobs" instance=ExtResource("11_wc0t2")]
-position = Vector2(4536, 25)
+position = Vector2(4545, 11)
 
 [node name="Traps" type="Node2D" parent="."]
 
