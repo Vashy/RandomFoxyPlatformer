@@ -29,54 +29,54 @@ motion_scale = Vector2(0.7, 1)
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Wooden-house" type="Sprite2D" parent="Items"]
-position = Vector2(1071, 384)
+position = Vector2(1071, 684)
 scale = Vector2(2.02041, 2.02041)
 texture = ExtResource("3_tydnq")
 
 [node name="Palm" type="Sprite2D" parent="Items"]
-position = Vector2(216, 336)
+position = Vector2(216, 604.966)
 scale = Vector2(1.23418, 1.23418)
 texture = ExtResource("4_l25bi")
 
 [node name="Palm2" type="Sprite2D" parent="Items"]
-position = Vector2(72, 384)
+position = Vector2(72, 652.966)
 scale = Vector2(1.61392, 1.61392)
 texture = ExtResource("4_l25bi")
 
 [node name="Plant-house" type="Sprite2D" parent="Items"]
-position = Vector2(400, 408)
+position = Vector2(400, 676.966)
 scale = Vector2(1.91748, 1.91748)
 texture = ExtResource("5_id7at")
 
 [node name="Rock-3" type="Sprite2D" parent="Items"]
-position = Vector2(886.816, 348.5)
+position = Vector2(886.816, 617.466)
 scale = Vector2(1.90351, 1.90351)
 texture = ExtResource("6_rftot")
 
 [node name="Rock-2" type="Sprite2D" parent="Items"]
-position = Vector2(886.816, 300.5)
+position = Vector2(886.816, 569.466)
 texture = ExtResource("6_rftot")
 
 [node name="Tree-house" type="Sprite2D" parent="Items"]
-position = Vector2(736, 352)
+position = Vector2(736, 620.966)
 scale = Vector2(1.77731, 1.77731)
 texture = ExtResource("7_qnk4l")
 
 [node name="Shrooms" type="Sprite2D" parent="Items"]
-position = Vector2(684, 280)
+position = Vector2(684, 548.966)
 texture = ExtResource("8_lwhu5")
 
 [node name="Rock" type="Sprite2D" parent="Items"]
-position = Vector2(1888, 472)
+position = Vector2(1888, 740.966)
 scale = Vector2(2.1, 2.1)
 texture = ExtResource("10_42mx2")
 
 [node name="Tree" type="Sprite2D" parent="Items"]
-position = Vector2(1328, 360)
+position = Vector2(1328, 628.966)
 texture = ExtResource("11_8l8gk")
 
 [node name="Tree2" type="Sprite2D" parent="Items"]
-position = Vector2(1592, 376)
+position = Vector2(1592, 644.966)
 scale = Vector2(1.31982, 1.31982)
 texture = ExtResource("11_8l8gk")
 
@@ -85,36 +85,31 @@ motion_scale = Vector2(0.7, 1)
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Middle" type="Sprite2D" parent="Foreground"]
-position = Vector2(191.7, 680)
+position = Vector2(191.7, 965)
 scale = Vector2(2.17841, 2.175)
 texture = ExtResource("3_ap08b")
 
 [node name="Middle2" type="Sprite2D" parent="Foreground"]
-position = Vector2(575.2, 680)
+position = Vector2(575.2, 984)
 scale = Vector2(2.18409, 2.175)
 texture = ExtResource("3_ap08b")
 
 [node name="Middle3" type="Sprite2D" parent="Foreground"]
-position = Vector2(880, 680)
-scale = Vector2(2.175, 2.175)
-texture = ExtResource("3_ap08b")
-
-[node name="Middle4" type="Sprite2D" parent="Foreground"]
-position = Vector2(1248, 680)
+position = Vector2(880, 973)
 scale = Vector2(2.175, 2.175)
 texture = ExtResource("3_ap08b")
 
 [node name="Middle6" type="Sprite2D" parent="Foreground"]
-position = Vector2(1248, 680)
+position = Vector2(1248.4, 965.2)
 scale = Vector2(2.175, 2.175)
 texture = ExtResource("3_ap08b")
 
 [node name="Middle7" type="Sprite2D" parent="Foreground"]
-position = Vector2(1728.3, 680)
+position = Vector2(1728.7, 965.2)
 scale = Vector2(2.17841, 2.175)
 texture = ExtResource("3_ap08b")
 
 [node name="Middle5" type="Sprite2D" parent="Foreground"]
-position = Vector2(1448, 680)
+position = Vector2(1448.4, 965.2)
 scale = Vector2(2.54205, 2.175)
 texture = ExtResource("3_ap08b")
